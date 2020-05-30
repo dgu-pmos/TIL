@@ -10,7 +10,7 @@
 
 ### SDN 아키텍쳐
 
-![image-20200529204531263](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200529204531263.png)
+![image-20200529204531263](https://i.ibb.co/1f2C5NH/image-20200529204531263.png)
 
 네트워크 장비에서 HW 기능과 SW 기능을 분리해 해는 것이다.
 
@@ -28,7 +28,7 @@
 
 #### SDN 구조
 
-![image-20200529204615220](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200529204615220.png)
+![image-20200529204615220](https://i.ibb.co/4jNrZx7/image-20200529204615220.png)
 
 SDN은 네트워크 구조를 위와 같이 3개의 layer로 분리하는데 각 layer는 Open interface를 통해 서로 통신한다. 
 
