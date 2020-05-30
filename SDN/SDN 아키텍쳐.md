@@ -43,7 +43,7 @@ SDN은 네트워크 구조를 위와 같이 3개의 layer로 분리하는데 각
 
 Infrastructure Layer는 수많은 네트워크 장비가 논리적으로 마치 한 대의 네트워크 장비가 동작하는 것처럼 운용되는 것을 목적으로 한다. 이를 위해 모든 개별 스위치들은 Control Layer와 긴밀하게 통일된 정보를 주고 받아야 한다. 여기서 널리 사용되는 것이 Openflow이다. 
 
-![image-20200529204704257](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200529204704257.png)
+![image-20200529204704257](https://i.ibb.co/PwvgtLb/image-20200529204704257.png)
 
 Openflow를 통한 통신을 위해 Controller와 스위치 간에는 Secure channel을 통해 연결된다. Secure channel을 통해 다양한 정보들이 통신되는데 패킷 처리를 위한 Flow Table도 Secure Channel을 통해 전달된다.
 
@@ -92,19 +92,19 @@ Rule에 의해 정의된 패킷을 어떻게 처리할지를 정의한다. Forwa
 
   - centralized controller
 
-    ![image-20200530171342572](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200530171342572.png)
+    ![image-20200530171342572](https://i.ibb.co/w7r1JVc/image-20200530171342572.png)
 
   가장 많이 사용되는 방식이다. controller를 Active, Standby로 배치해 이중화했다.
 
   - distributed controller
 
-  ![image-20200530171508239](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200530171508239.png)
+  ![image-20200530171508239](https://i.ibb.co/N3W06Vn/image-20200530171508239.png)
 
   매우 큰 데이터의 잦은 통신이 일어나는 환경에 좋다. 구글의 G-scale에서 사용된다.
 
   - multilayer controller
 
-  ![image-20200530171526934](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200530171526934.png)
+  ![image-20200530171526934](https://i.ibb.co/RS1fKnB/image-20200530171526934.png)
 
   본사와 다수의 지사가 연결된 은행이나 체인점 등에 유용하다.
 
