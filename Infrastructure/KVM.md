@@ -117,8 +117,8 @@
 
      - libvirt
      
-     ![](https://i.ibb.co/4f1GVWV/image.png)
-     
+       ![](https://i.ibb.co/4f1GVWV/image.png)
+       
        - KVM 데몬(다양한 하이퍼바이저 통합 관리 API)
        - virsh 명령을 사용하거나 API를 사용하는 도구를 만들어서 사용
 
