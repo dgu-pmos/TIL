@@ -98,6 +98,8 @@
 
 ### 방화벽 live migrate
 
+![](https://i.ibb.co/mz5V0Gx/2020-06-02-204454.png)
+
 1. KVM1, KVM2, Storage 생성
    - VMWare Workstation에서 3대의 가상머신 생성(CentOS7)
    - NIC : NAT, VMnet1(Host-only)
