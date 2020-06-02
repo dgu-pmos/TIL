@@ -132,9 +132,9 @@
 
    - KVM 연결
 
-   ![image-20200602164518207](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200602164518207.png)
+   ![image-20200602164518207](https://i.ibb.co/bRjYpW6/image-20200602164518207.png)
 
-   ![image-20200602164550894](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200602164550894.png)
+   ![image-20200602164550894](https://i.ibb.co/BwsVqGV/image-20200602164550894.png)
 
 4. 네트워크 이름 변경
 
@@ -234,6 +234,6 @@
 
 9. 결과
 
-   ![image-20200602171641922](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200602171641922.png)
+   ![image-20200602171641922](https://i.ibb.co/rfBmWvq/image-20200602171641922.png)
 
-   ![image-20200602171810786](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200602171810786.png)
+   ![image-20200602171810786](https://i.ibb.co/YyM1qr3/image-20200602171810786.png)
