@@ -116,12 +116,10 @@
        - KVM 핵심 설치 패키지
 
      - libvirt
-	![](https://i.ibb.co/4f1GVWV/image.png)
-
+     ![](https://i.ibb.co/4f1GVWV/image.png)
        - KVM 데몬(다양한 하이퍼바이저 통합 관리 API)
-        
        - virsh 명령을 사용하거나 API를 사용하는 도구를 만들어서 사용
-   
+
      - virt-install
        - CLI 상 가상머신 설치 도구
        - 하드웨어 사양, 설치 미디어 지정, 디스크 크기 등 지정
@@ -133,9 +131,9 @@
      
        - 가상머신 화면 전시
 
-   - qemu.conf 수정
-
-   ```
+- qemu.conf 수정
+  
+```
    vi /etc/libvirt/qemu.conf
    
    '''
@@ -143,25 +141,26 @@
    #442	user = "root"
    #443	group = "root"
    '''
-   ```
+```
 
-   - 데몬 및 프로세스 실행
-
-   ```
+- 데몬 및 프로세스 실행
+  
+```
    # libvirtd 실행
    systemctl start libvirtd
    systemctl enable libvirtd
    # virt-manager 열고 터미널 계속 사용
    virt-manager &
-   ```
+```
 
-   - KVM 연결
+- KVM 연결
+  
 
-   ![image-20200602164518207](https://i.ibb.co/bRjYpW6/image-20200602164518207.png)
+![image-20200602164518207](https://i.ibb.co/bRjYpW6/image-20200602164518207.png)
 
-   ![image-20200602164550894](https://i.ibb.co/BwsVqGV/image-20200602164550894.png)
+![image-20200602164550894](https://i.ibb.co/BwsVqGV/image-20200602164550894.png)
 
-   add connection 에서 hostname을 이용해 KVM 끼리 연결한다.
+add connection 에서 hostname을 이용해 KVM 끼리 연결한다.
 
 4. 기존 네트워크 이름으로 변경(ens -> eth)
 
