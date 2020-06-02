@@ -36,6 +36,8 @@
 
 - Hypervisor가 Host OS에서 모든 일을 처리
 - 하드웨어를 완전히 가상화하는 방식
+- DOM0이라고 하는 관리용 가상머신이 모든 하드웨어 접근에 개입
+- Guest OS에서 별다른 수정 없이 사용
 - CPU의 VT를 이용해 성능이 저하
 
 
@@ -45,8 +47,8 @@
 ![](https://i.ibb.co/GsxRxS5/image-20200602102949631.png)
 
 - 일부 역할을 Hypervisor의 도움을 받아서 처리
-- Hypervisor에게 의뢰 및 제어하는 방식
-- 높은 성능
+- Hyper Call 이라는 인터페이스로 직접 Hypervisor에게 요청
+- 성능이 좋으나, OS 사용에 제한
 
 
 
