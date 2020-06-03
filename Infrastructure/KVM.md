@@ -31,6 +31,14 @@
 
 
 
+#### /etc/libvirt/qemu
+
+- 네트워크 및 가상머신의 하드웨어 정보가 xml 형식으로 저장
+- 마이그레이션 시, 도착지 호스트로 xml 파일이 옮겨짐
+- MAC주소는 xml에 들어있지만, IP 정보는 Img 파일에 있음
+
+
+
 #### virbr
 
 - virtual bridge의 줄임말
