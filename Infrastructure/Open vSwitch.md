@@ -293,7 +293,10 @@ bridge 대신 가상 스위치 Open vSwitch로 변경하고, 각 방화벽에 VX
 4. VXLAN 적용
 
    ```
-   ovs-vsctl add-port vswitch002 vxlan10 -- set interface vxlan10 type=vxlan options:remote_ip=211.183.3.101
+   [kvm1]
    ovs-vsctl add-port vswitch002 vxlan10 -- set interface vxlan10 type=vxlan options:remote_ip=211.183.3.102
+   
+   [kvm2]
+   ovs-vsctl add-port vswitch002 vxlan10 -- set interface vxlan10 type=vxlan options:remote_ip=211.183.3.101
    ```
 
