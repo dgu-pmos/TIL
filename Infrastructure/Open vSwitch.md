@@ -226,7 +226,8 @@ bridge 대신 가상 스위치 Open vSwitch로 변경하고, 각 방화벽에 VX
    '''
    vi /etc/sysconfig/network-scripts/ifcfg-eth0
    '''
-   OTPROTO=static
+   TYPE=OVSPort
+   BOOTPROTO=static
    NAME=eth0
    DEVICE=eth0
    ONBOOT=yes
@@ -251,7 +252,8 @@ bridge 대신 가상 스위치 Open vSwitch로 변경하고, 각 방화벽에 VX
    '''
    vi /etc/sysconfig/network-scripts/ifcfg-eth0
    '''
-   OTPROTO=static
+   TYPE=OVSPort
+   BOOTPROTO=static
    NAME=eth0
    DEVICE=eth0
    ONBOOT=yes
