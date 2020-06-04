@@ -84,7 +84,7 @@
 
    ```
    [KVM_HM]
-   yum install -y libvirt virt-install
+   yum install -y libvirt virt-install qemu-kvm
    vi /etc/libvirt/qemu.conf
    '''
    # qemu로 생성된 프로세스들의 user ID 설정
