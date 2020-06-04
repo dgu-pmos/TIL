@@ -37,9 +37,13 @@
 
    ```
    [KVM_HM]
+   # selinux disable
    setenforce 0
+   # selinux 영구적으로 disable
    sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+   # firewall disable
    systemctl stop firewalld
+   # firewall 영구적으로 disable
    systemctl disable firewalld
    ping 192.168.0.25
    reboot
@@ -87,11 +91,17 @@
    #442 user = "root"
    #443 group = "root"
    '''
+   # libvirt 시작
    systemctl start libvirtd
    systemctl enable libvirtd
+   # EPEL(Extra Packages for Enterprise Linux)
+   # EPEL은 엔터프라이즈 리눅스를 위한 추가적인 패키지들을 관리하는 그룹, Fedora Project에서 제공하는 저장소
+   # yum에 epel 저장소 경로 추가
    yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+   # yum에 wok, kimchi 경로 추가
    yum install https://github.com/kimchi-project/kimchi/releases/download/2.5.0/wok-2.5.0-0.el7.centos.noarch.rpm
    yum install https://github.com/kimchi-project/kimchi/releases/download/2.5.0/kimchi-2.5.0-0.el7.centos.noarch.rpm
+   # wok 시작
    systemctl start wokd
    systemctl enable wokd
    ```
@@ -100,8 +110,10 @@
 
    ```
    [KVM_HM]
+   # wget은 웹 서버로부터 contents를 가져오는 프로그램
    yum install -y wget
    mkdir /root/Download
+   # 해당 경로에 CentOS iso 파일 다운로드
    cd /root/Download
    wget http://mirror.kakao.com/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-DVD-2003.iso
    mv CentOS-7-x86_64-DVD-2003.iso CentOS.iso
@@ -111,8 +123,6 @@
 
    ```
    [KVM_HM]
-   # EPEL은 Fedora Project에서 제공하는 저장소
-   # CentOS는 해당 저장소 URL 추가 해야함
    yum install -y epel-release https://rdoproject.org/repos/rdo-release.rpm
    # 패키지 설치
    yum install -y openvswitch bridge-utils
@@ -122,15 +132,18 @@
    systemctl start openvswitch
    systemctl enable openvswitch
    ```
-
+   
 7. vswitch002 생성(eth0을 ovsport로 포함)
 
    ```
    [KVM_HM]
    vi /etc/sysconfig/network-scripts/ifcfg-vswitch002
    '''
+   # 타입은 open vswitch's bridge
    TYPE=OVSBridge
+   # 장치 타입은 open vswitch
    DEVICETYPE=ovs
+   # 주소 할당은 정적
    BOOTPROTO=static
    NAME=vswitch002
    DEVICE=vswitch002
@@ -143,12 +156,15 @@
    '''
    vi /etc/sysconfig/network-scripts/ifcfg-eth0
    '''
+   # 포트 타입은 open vswitch 용 포트
    TYPE=OVSPort
+   # 주소 할당은 정적
    BOOTPROTO=static
    NAME=eth0
    DEVICE=eth0
    ONBOOT=yes
    NM_CONTROLLED=no
+   # 포트가 들어갈 브릿지 = vswitch002
    OVS_BRIDGE=vswitch002
    '''
    ```
@@ -157,7 +173,8 @@
 
    ```
    [KVM_HM]
-   virt-install --name vm1 --vcpus 1 --ram 2048 --disk path=/root/Download/vm1.img,size=20 --cdrom /root/Download/CentOS.iso
+   # cpu : 2, ram : 2048mb, disk : 10gb, os : centos 7 가상머신 생성
+   virt-install --name vm1 --vcpus 2 --ram 2048 --disk path=/root/Download/vm1.img,size=20 --cdrom /root/Download/CentOS.iso
    ```
 
 9. 가상머신에 php 설치
@@ -165,14 +182,20 @@
    ```
    [VM1]
    yum -y install wget
+   # 기타 추가적 저장소 경로 추가
    wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
    wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
    rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+   # yum-utils : 레포지토리를 조작하고 패키지를 확장하는 관리 유틸리티
    yum install yum-utils
+   # yum-config-manage : yum 설정 옵션과 저장소를 관리하는 도구
    yum-config-manager --enable remi-php72
+   # 자주 쓰이는 php 패키지들과 httpd 설치
    yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysql httpd
+   # 아파치 웹 서버 시작
    systemctl start httpd
    systemctl enable httpd
+   # httpd.conf 수정해서 브라우저에 php 띄우게 하기
    vi /etc/httpd/conf/httpd.conf
    '''
    ~~~
@@ -200,7 +223,9 @@
     68     <interface type='bridge'>
     69       <source bridge='vswitch002'/>
     70       <virtualport type='openvswitch'/>
+    		 # 포트 디바이스 이름 지정
     71       <target dev='vm1_vp01'/>
+    		 # virtio : guestOS 와 host 간 paravirtualized I/O 지원 
     72       <model type='virtio'/>
     73     </interface>
     '''
@@ -211,6 +236,7 @@
 
     ```
     [KVM_HM]
+    # VXLAN을 이용해 192.168.0.25과 Tunneling 구성
     ovs-vsctl add-port vswitch002 vxlan10 -- set interface vxlan10 type=vxlan options:remote_ip=192.168.0.25
     ```
 
