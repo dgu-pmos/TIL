@@ -133,42 +133,6 @@
    systemctl enable openvswitch
    ```
    
-7. vswitch002 생성(eth0을 ovsport로 포함)
-
-   ```
-   [KVM_HM]
-   vi /etc/sysconfig/network-scripts/ifcfg-vswitch002
-   '''
-   # 타입은 open vswitch's bridge
-   TYPE=OVSBridge
-   # 장치 타입은 open vswitch
-   DEVICETYPE=ovs
-   # 주소 할당은 정적
-   BOOTPROTO=static
-   NAME=vswitch002
-   DEVICE=vswitch002
-   ONBOOT=yes
-   IPADDR=192.168.0.2
-   PREFIX=24
-   GATEWAY=192.168.0.1
-   DNS1=8.8.8.8
-   NM_CONTROLLED=no
-   '''
-   vi /etc/sysconfig/network-scripts/ifcfg-eth0
-   '''
-   # 포트 타입은 open vswitch 용 포트
-   TYPE=OVSPort
-   # 주소 할당은 정적
-   BOOTPROTO=static
-   NAME=eth0
-   DEVICE=eth0
-   ONBOOT=yes
-   NM_CONTROLLED=no
-   # 포트가 들어갈 브릿지 = vswitch002
-   OVS_BRIDGE=vswitch002
-   '''
-   ```
-
 8. 가상머신 생성 -> 기본 네트워크로 설치
 
    ```
@@ -212,6 +176,42 @@
    ~~~
    '''
    systemctl restart httpd
+   ```
+
+9. vswitch002 생성(eth0을 ovsport로 포함)
+
+   ```
+   [KVM_HM]
+   vi /etc/sysconfig/network-scripts/ifcfg-vswitch002
+   '''
+   # 타입은 open vswitch's bridge
+   TYPE=OVSBridge
+   # 장치 타입은 open vswitch
+   DEVICETYPE=ovs
+   # 주소 할당은 정적
+   BOOTPROTO=static
+   NAME=vswitch002
+   DEVICE=vswitch002
+   ONBOOT=yes
+   IPADDR=192.168.0.2
+   PREFIX=24
+   GATEWAY=192.168.0.1
+   DNS1=8.8.8.8
+   NM_CONTROLLED=no
+   '''
+   vi /etc/sysconfig/network-scripts/ifcfg-eth0
+   '''
+   # 포트 타입은 open vswitch 용 포트
+   TYPE=OVSPort
+   # 주소 할당은 정적
+   BOOTPROTO=static
+   NAME=eth0
+   DEVICE=eth0
+   ONBOOT=yes
+   NM_CONTROLLED=no
+   # 포트가 들어갈 브릿지 = vswitch002
+   OVS_BRIDGE=vswitch002
+   '''
    ```
 
 10. 가상머신 종료 후, virsh edit 가상머신 이름 -> 네트워크 인터페이스 수정
@@ -266,7 +266,7 @@
     ?>
     '''
     ```
-    
+
     브라우저에서 localhost:80/phpinfo.php를 열면 다음과 같은 화면이 출력된다.
-    
+
       ![](https://i.ibb.co/HF8CNXG/2020-06-04-150343.png)
