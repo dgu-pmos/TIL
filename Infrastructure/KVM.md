@@ -1,4 +1,4 @@
-# KVM
+# KVM (추가예정)
 
 ## 이론
 
@@ -19,6 +19,11 @@
 
 - Quick Emulator의 줄임말
 - 에뮬레이터 기능을 제공하는 가상화 솔루션
+- VMM(Virtual Machine Monitor) 역할 수행
+  - 가상머신의 하드웨어 가상화 및 저수준 인터페이스 지원
+  - QEMU는 자체 가상 머신
+  - Process에 signal 전송해 가상머신 종료 가능
+  - Processor 소비량 검사 가능
 - Guest CPU를 Host CPU용 명령으로 실행 중에 동적으로 변환
 - 거의 모든 Hardware 에뮬레이팅
 
@@ -296,3 +301,9 @@ add connection 에서 hostname을 이용해 KVM 끼리 연결한다.
    ![image-20200602171810786](https://i.ibb.co/YyM1qr3/image-20200602171810786.png)
 
 KVM 끼리 연결하고, 같은 네트워크 환경을 적용하니 Live Migration 이 성공적으로 동작했다.
+
+
+
+###### 출처
+
+###### - https://www.redhat.com/en/blog/all-you-need-know-about-kvm-userspace
