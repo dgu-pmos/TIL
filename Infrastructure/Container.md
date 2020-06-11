@@ -134,9 +134,17 @@
    docker search
    // Docker hub로부터 이미지 다운로드
    docker image pull
+   // 해당 컨테이너에 bash shell로 연결
+   // exec : container에게 명령어 전달
+   // bash 실행하라고
+   // nginx 컨테이너라면 다 nginx 빼고 다 안깔려있음(웹서버 역할만 할테니까)
+   
+   docker exec -it [name] bash
+   // 컨테이너 컨테이너 중지
+   docker container stop
+   // 컨테이너 컨테이너 삭제
+   docker container rm
    ```
-
-
 
 Docker 컨테이너 생성 과정
 

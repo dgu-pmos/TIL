@@ -25,15 +25,15 @@
 
 #### index 생성 및 실행
 
-  ![image-20200608143939318](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608143939318.png)
+  ![image-20200608143939318](https://i.ibb.co/h7zwbMW/image-20200608143939318.png)
 
 #### 결과
 
-![image-20200608143946787](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608143946787.png)
+![image-20200608143946787](https://i.ibb.co/ZMg9F8N/image-20200608143946787.png)
 
 idx_indextbl_fname을 활용해 탐색하였다.
 
-![image-20200608144105459](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608144105459.png)
+![image-20200608144105459](https://i.ibb.co/py3PBnp/image-20200608144105459.png)
 
 #### Clustered Index
 
@@ -62,11 +62,11 @@ idx_indextbl_fname을 활용해 탐색하였다.
 
 #### 코드 예시
 
-![image-20200608144703932](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608144703932.png)
+![image-20200608144703932](https://i.ibb.co/fqH2yMJ/image-20200608144703932.png)
 
 #### 결과
 
-![image-20200608144710121](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608144710121.png)
+![image-20200608144710121](https://i.ibb.co/S5Wps0b/image-20200608144710121.png)
 
 
 
@@ -76,15 +76,15 @@ idx_indextbl_fname을 활용해 탐색하였다.
 
 #### 코드 예시
 
-![image-20200608152218482](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608152218482.png)
+![image-20200608152218482](https://i.ibb.co/TPH0N52/image-20200608152218482.png)
 
 #### 결과
 
-![image-20200608152233151](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608152233151.png)
+![image-20200608152233151](https://i.ibb.co/pWPtBVh/image-20200608152233151.png)
 
-![image-20200608152249060](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608152249060.png)
+![image-20200608152249060](https://i.ibb.co/dtGYbQj/image-20200608152249060.png)
 
-![image-20200608152255447](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608152255447.png)
+![image-20200608152255447](https://i.ibb.co/w7s8Zcx/image-20200608152255447.png)
 
 
 
@@ -98,15 +98,15 @@ idx_indextbl_fname을 활용해 탐색하였다.
 
 #### 코드 예시
 
-![image-20200608154748562](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608154748562.png)
+![image-20200608154748562](https://i.ibb.co/NmJL8m1/image-20200608154748562.png)
 
 #### 결과
 
-![image-20200608154654854](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608154654854.png)
+![image-20200608154654854](https://i.ibb.co/ct3yMw9/image-20200608154654854.png)
 
-![image-20200608154709752](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608154709752.png)
+![image-20200608154709752](https://i.ibb.co/25GpVQC/image-20200608154709752.png)
 
-![image-20200608154700833](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200608154700833.png)
+![image-20200608154700833](https://i.ibb.co/RcjRh8t/image-20200608154700833.png)
 
 ## Join
 
