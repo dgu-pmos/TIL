@@ -55,9 +55,9 @@
   - Node.js + Nginx + Postgres
   - 이를 마이크로 서비스라고 부름
 
-
-
 ## 실습
+
+### 도커 실습 환경 구축
 
 1. Ubuntu Desktop 설치 및 기본 셋팅
 
@@ -121,33 +121,147 @@
    docker version
    ```
 
-4. Docker 실행 및 제어 명령어
+### 명령문 모음
+
+| command                                                | description                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| docker container run [IMAGE _NAME]                     | 새 컨테이너 생성 및 실행<br /><br />options<br />-i : 컨테이너의 표준 출력을 연결<br />-t : tty를 확보(터미널 오픈을 위해 주로 -it를 함께 사용)<br />--name : 컨테이너 이름 지정<br />--hostname : 컨테이너 내 호스트명 지정<br />-rm : 지정된 명령을 실행 한 뒤 컨테이너 자동 삭제<br />-d : 백그라운드에서 서비스 제공<br />-e : 환경변수 설정<br />-p : 포트포워딩<br />-v : NFS<br />-link : 타 Container 연결 |
+| docker container ls -a                                 | 컨테이너 리스트 확인                                         |
+| docker container stop [CONTAINER_NAME]                 | 컨테이너 중지                                                |
+| docker container start [CONTAINER_NAME]                | 컨테이너 시작                                                |
+| docker container rm [CONTAINER_NAME]                   | 컨테이너 삭제                                                |
+| docker image ls -a                                     | 로컬 저장소에 보관중인 이미지 리스트 확인                    |
+| docker search                                          | 도커 허브에 공개된 이미지 탐색                               |
+| docker iamge tag [IMAGE _NAME] [NEW_IMAGE_NAME]        | 다운로드된 이미지를 복사해 별도의 태그 작성                  |
+| docker image inspect [IMAGE _NAME]                     | 이미지에서 포함하고 있는 정보 확인                           |
+| docker image pull [IMAGE_NAME]                         | 도커허브를 통한 이미지 다운로드                              |
+| docker image rm [IMAGE _NAME]                          | 이미지를 삭제<br /><br />options<br />-f : 이미지 강제 삭제<br />-a : 사용하지 않는 모든 이미지 삭제 |
+| docker container commit [CONTAINER_NAME] [IMAGE _NAME] | 컨테이너로부터 이미지 작성<br /><br />options<br />-a : author 지정<br />-m : message 작성<br />-c : commit 시 Dockerfile 명령 지정<br />-p : 컨테이너를 일시정지하고 commit 진행 |
+
+
+
+### Docker, Mysql, Wordpress 를 이용한 웹 사이트 구축
+
+```
+// MYSQL Container 생성 및 실행
+// EXPOSE를 하지 않은 이유는 기본적으로 3306이 열려있기 때문
+docker container run -d --name mysql -v mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress mysql:5.7
+// Wordpress Container 생성 및 실행
+// 환경 변수를 이용해 MYSQL Container와 연결
+docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql:mysql -e WORDPRESS_DB_HOST=mysql:3306 -e WORDPRESS_DB_PASSWORD=wordpress -p 8080:80 wordpress:latest
+```
+
+![image-20200611181543501](https://i.ibb.co/X2H1nJ9/image-20200611181543501.png)
+
+![image-20200611181736210](https://i.ibb.co/z733fqr/image-20200611181736210.png)
+
+### Dockerfile을 이용한 Nginx Container 생성
+
+1. docker 디렉토리 생성 후, index.html과 a.jpg, b.jpg를 담은 image 디렉토리 생성
+
+   ```html
+   // 홈 디렉토리 이동 후, docker 디렉토리 생성 성공 시 이동
+   cd ; mkdir docker ; cd docker
+   mkdir image
+   vim index.html
+   '''
+   <!DOCTYPE html>
+           <html>
+                   <head>
+                           <title>test page</title>
+                   </head>
+           <body>
+                   <img src="image/a.jpg"><br>
+                   <img src="image/b.jpg"><br>
+           </body>
+       </html>
+   '''
+   // a.jpg, b.jpg는 구글링해서 다운받기
+   ```
+
+2. Dockerfile 작성
 
    ```
-   // 로컬 저장소에 보관 중인 이미지 목록 확인
-   docker image ls
-   // 새 컨테이너 실행
-   docker container run
-   // 컨테이너 리스트 확인
-   docker container ls
-   // Docker hub에 공개된 이미지 탐색
-   docker search
-   // Docker hub로부터 이미지 다운로드
-   docker image pull
-   // 해당 컨테이너에 bash shell로 연결
-   // exec : container에게 명령어 전달
-   // bash 실행하라고
-   // nginx 컨테이너라면 다 nginx 빼고 다 안깔려있음(웹서버 역할만 할테니까)
-   
-   docker exec -it [name] bash
-   // 컨테이너 컨테이너 중지
-   docker container stop
-   // 컨테이너 컨테이너 삭제
-   docker container rm
+   FROM nginx:latest
+   EXPOSE 80
+   CMD ["nginx", "-g", "daemon off;"]
+   WORKDIR /usr/share/nginx/html
+   ADD index.html /usr/share/nginx/html
+   ADD image.tar /usr/share/nginx/html
    ```
 
-Docker 컨테이너 생성 과정
+3. Dockerfile을 이용해 Image 생성
 
-1. 로컬 저장소를 검색해 이미지 탐색
-2. (만약 이미지가 없다면)도커 허브로 연결해서 다운로드 실행
-3. 이미지를 이용해 컨테이너 생성
+   ```
+   sudo docker build -t rapa/newnginx100:1.0 .
+   ```
+
+4. Image를 이용해 Container 생성
+
+   ```
+   sudo docker container run -d -p 8089:80 --name rapanginx100 rapa/newnginx100:1.0
+   ```
+
+5. 결과
+
+   ![image-20200611183955433](https://i.ibb.co/yXWsTFz/image-20200611183955433.png)
+
+![image-20200611184015966](https://i.ibb.co/Jd1rkgc/image-20200611184015966.png)
+
+![image-20200611184115572](https://i.ibb.co/rdS36TW/image-20200611184115572.png)
+
+
+
+### Dockerfile
+
+- text 형식의 파일이며 Editor를 이용해 원하는 내용을 기술
+- 베이스 이미지를 지정한 뒤, 필요한 미들웨어 및 명령어를 추가해 원하는 형태의 이미지 생성 
+- Dockerfile은 Docker의 build 명령을 통해 Image로 작성
+
+| command    | description                        | command     | description                                                  |
+| ---------- | ---------------------------------- | ----------- | ------------------------------------------------------------ |
+| FROM       | 베이스 이미지 지정                 | VOLUME      | 이미지에 볼륨을 할당하고자 할 때 사용 <br />호스트나 다른 컨테이너에서 마운트를 수행 |
+| RUN        | 명령 실행                          | USER        | 사용자 지정                                                  |
+| CMD        | 컨테이너 명령 실행                 | WORKDIR     | 작업 디렉토리 지정                                           |
+| LABEL      | 라벨 설정                          | ARG         | Dockerfile 안의 변수                                         |
+| EXPOSE     | 외부에서 접근 가능하도록 포트 공개 | ONBUILD     | 빌드 완료 후 명령 실행                                       |
+| ENV        | 환경변수 제어                      | STOPSIGNAL  | 시스템 콜 시그널 설정                                        |
+| ADD        | 파일/디렉토리 추가                 | HEALTHCHECK | 컨테이너 내 프로세스가 정상적으로 동작하는지 체크            |
+| COPY       | 파일 복사                          | SHELL       | Shell 지정                                                   |
+| ENTRYPOINT | 명령 실행                          |             |                                                              |
+
+#### RUN
+
+- 지정한 베이스 이미지에 대해 애플리케이션 및 미들웨어 등을 설치하거나 환경 구축을 위한 명령
+
+#### CMD & ENTRYPOINT
+
+- CMD와 ENTRYPOINT는 공통적으로 컨테이너 안에서 명령을 실행
+- CMD
+  - CMD는 Dockerfile 내에서 한 번만 기술
+  - 여러번 기술 되었다면 마지막 CMD만 유효
+  - docker container run 명령어에서 CMD와 중복되는게 있다면 run 명령어의 새로운 명령을 우선 실행
+- ENTRYPOINT
+  - docker container run 명령을 실행했을 때 ENTRYPOINT가 실행
+  - run 명령어와 중복된다면, 무조건 ENTRYPOINT를 우선 실행
+
+#### ONBUILD
+
+- ONBUILD ADD index.html /var/www/html/index.html
+  - Build를 진행한 후, 빌드를 진행한 경로에 index.html이 존재 해야함
+  - 현재 경로에 존재하는 index.html이 Container의 /var/www/html 디렉토리에 추가
+
+#### ADD
+
+- 호스트 상의 파일이나 디렉토리를 추가할 때 사용
+- ADD [HOST_PATH] [DOCKER_PATH]
+- 만약 호스트 파일이 압축포맷이라면 자동으로 풀어서 옮겨줌
+- URL로부터 다운로드 한 압축파일은 풀어주지 않음
+
+#### VOLUME
+
+- 이미지에 볼륨을 마운트할 때 사용
+- 호스트나 다른 컨테이너에서 마운트를 수행
+
+
+
