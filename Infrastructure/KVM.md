@@ -1,8 +1,8 @@
-# KVM (추가예정)
+# KVM
 
 ## 이론
 
-### What is KVM?
+### KVM
 
 ![](https://t1.daumcdn.net/cfile/tistory/998C37335A064EC534)
 
@@ -11,23 +11,33 @@
 - 리눅스 커널의 Mainline에 포함된 정식 커널 모듈 중 하나
 - CPU에 VT 기능 지원 해야 사용 가능
 - 리눅스를 Hypervisor로 변환해 독립된 가상 머신 여러 개 실행
-- 가상머신은 각자의 가상화 하드웨어 사용 
+- QEMU와 함께라면 KVM은 가속 에이전트
 
-
-
-#### Qemu
+#### QEMU
 
 - Quick Emulator의 줄임말
-- 에뮬레이터 기능을 제공하는 가상화 솔루션
 - VMM(Virtual Machine Monitor) 역할 수행
   - 가상머신의 하드웨어 가상화 및 저수준 인터페이스 지원
   - QEMU는 자체 가상 머신
-  - Process에 signal 전송해 가상머신 종료 가능
-  - Processor 소비량 검사 가능
+  - 가상머신 종료 및 Processor 소비량 검사 등 수행
+- KVM과 QEMU는 둘 다 Hypervisor 처럼 동작할 수 있음
+  - 그러면 왜 함께 사용하는가?
+    - QEMU는 가상화가 없는 시스템에서는 느림
+    - 그래서 KVM은 QEMU에게 서로 다른 아키텍처의 하드웨어 가상화 기능에 접근을 허용
+    - KVM과 함께라면 QEMU가 하이퍼바이저/에뮬레이터
 - Guest CPU를 Host CPU용 명령으로 실행 중에 동적으로 변환
-- 거의 모든 Hardware 에뮬레이팅
 
+#### Libvirt
 
+![](https://www.redhat.com/cms/managed-files/image1_21_0.png)
+
+- 단순한 가상화 관리 라이브러리
+  - KVM과 QEMU를 관리하는 API 라이브러리
+  - API 라이브러리, 데몬, virsh(Command Line Tool) 제공
+- QEMU가 가상머신 제어를 위해 Libvirt에게 요청하는 방식
+- Guest에게 보이지 않음
+- QEMU 프로세스는 Guest의 입력 및 명령을 처리해 보안에 취약
+  - 파일 시스템 소유권 및 SELinux, cgroup 등 QEMU를 제한하기 위해 많은 기술과 결합
 
 #### /dev/kvm
 
@@ -44,15 +54,11 @@
 - 마이그레이션 시, 도착지 호스트로 xml 파일이 옮겨짐
 - MAC주소는 xml에 들어있지만, IP 정보는 Img 파일에 있음
 
-
-
 #### virbr
 
 - virtual bridge의 줄임말
 - 주로 NAT로 사용
 - libvirt 라이브러리에 의해 제공됨
-
-
 
 ### Migration
 
@@ -63,8 +69,6 @@
 - 64bit는 64bit끼리 가능(32bit는 제한 없음)
 - 호스트 간 image directory는 같은 경로 추천
 - 같은 네트워크 환경이여야 Migrate 가능
-
-
 
 ##### 알고리즘
 
@@ -84,8 +88,6 @@
      - 새 장소의 NIC을 알리기 위해 "I'm over here" 이더넷 패킷 브로드캐스팅
    - 실패 시 출발지
      - exception 1개 발생
-
-
 
 ### Overlay Network
 
@@ -307,3 +309,5 @@ KVM 끼리 연결하고, 같은 네트워크 환경을 적용하니 Live Migrati
 ###### 출처
 
 ###### - https://www.redhat.com/en/blog/all-you-need-know-about-kvm-userspace
+
+###### - https://www.thegeekyway.com/kvm-vs-qemu-vs-libvirt/

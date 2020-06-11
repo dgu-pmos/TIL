@@ -1,4 +1,4 @@
-# Hypervisor (추가예정)
+# Hypervisor
 
 ## Hypervisor
 
@@ -19,8 +19,6 @@
 - 성능이 우수하며 Bare Metal Hypervisor라고 불림
 - KVM, VMWare ESXi, XenServer ..
 
-
-
 #### Type 2
 
 - Host OS 위에 소프트웨어적으로 설치되는 방식
@@ -30,25 +28,49 @@
 
 
 
-#### 전가상화
+#### Full virtualization
 
-![](https://i.ibb.co/98VDKsJ/image-20200602102931115.png)
+##### Software Assisted Full Virtualization
 
-- Hypervisor가 Host OS에서 모든 일을 처리
-- 하드웨어를 완전히 가상화하는 방식
-- DOM0이라고 하는 관리용 가상머신이 모든 하드웨어 접근에 개입
-- Guest OS에서 별다른 수정 없이 사용
-- CPU의 VT를 이용해 성능이 저하
+![](https://www.unixarena.com/wp-content/uploads/2017/12/Binaray-Transalation-Full-Virtualization.jpg)
+
+- VM이 Guest OS에게 Instruction을 전달
+- Guest OS는 Hypervisor에게 Binary Translation 요청
+- Hyervisor가 변환 후 하드웨어에게 전달
+- Binary Translation 때문에 성능 저하 발생
+- VMware workstation, VirtualBox ..
+
+##### Hardware Assisted Full Virtualization
+
+![](https://www.unixarena.com/wp-content/uploads/2017/12/Hardware-assisted-virtualization-Hypervisor2.jpg)
+
+- Binary Translation을 제거함
+- CPU의 가상화 기능(Intel VT-x, AMD-V) 사용해 직접적으로 하드웨어에 인터럽트 요청
+- VM의 Instruction에서도 Processor에게 직접 권한을 요하는 명령 실행 가능
+- KVM, VMware ESXi, Xen ..
 
 
 
-#### 반가상화
+#### Paravirtualization
 
-![](https://i.ibb.co/GsxRxS5/image-20200602102949631.png)
+- 하드웨어 가상화가 필요 없음
+- 하이퍼바이저는 물리적 서버 위에서 설치됨
+- Guest는 자신이 가상화된 사실은 인지
+  - 드라이버를 사용해 Host(Hypervisor)와 직접 통신
 
-- 일부 역할을 Hypervisor의 도움을 받아서 처리
-- Hyper Call 이라는 인터페이스로 직접 Hypervisor에게 요청
-- 성능이 좋으나, OS 사용에 제한
+- Guest는 Hypervisor에게 API call을 하기 위해 확장이 필요(Hyper Call)
+  - 이를 위해서 Guest OS는 조금 수정되어야 함(그래서 윈도우는 불가)
+- Xen, IBM LPAR ..
+
+##### Xen의 Paravirtualization 방법
+
+![](https://wiki.xen.org/images/thumb/7/73/XenPV.png/750px-XenPV.png)
+
+- DOM 0는 부팅 시 생성되는 초기 VM
+  - 본질적으로 Host OS
+  - 하드웨어에 직접 접근할 수 있는 권한 갖고있음
+- Guest OS와 DOM0은 PV front-end, back-end 드라이버로 통신
+- 요청을 받으면 DOM0가 Driver를 통해 하드웨어에 접근
 
 
 
@@ -119,3 +141,6 @@
 
 
 
+###### 출처
+
+###### - https://www.unixarena.com/2017/12/para-virtualization-full-virtualization-hardware-assisted-virtualization.html/
