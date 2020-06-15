@@ -98,7 +98,7 @@
 
 - 이미지 의존관계
 
-  ![image-20200612121231073](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200612121231073.png)
+  ![image-20200612121231073](https://i.ibb.co/crPb9Bh/image-20200612121231073.png)
 
   - Docker 이미지는 16진수 Hash value로 ID를 구성
   - centos:centos7은 511136ea3c5a, 34e94e67e63a, b157b66b1a65가 조합된 것
@@ -465,9 +465,9 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
 
 3. 결과
 
-   ![image-20200612163302075](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200612163302075.png)
+   ![image-20200612163302075](https://i.ibb.co/Mftxb9t/image-20200612163302075.png)
 
-   ![image-20200612163234660](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200612163234660.png)
+   ![image-20200612163234660](https://i.ibb.co/kxF9Bmd/image-20200612163234660.png)
 
 ### 개발 팀장이 개발자들에게 이미지 배포
 
@@ -510,7 +510,7 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
 
 4. 결과
 
-   ![image-20200615100149179](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200615100149179.png)
+   ![image-20200615100149179](https://i.ibb.co/JjGhC4m/image-20200615100149179.png)
 
 ### Xpressengine, MariaDB, Docker를 이용한 서비스 배포
 
@@ -585,7 +585,7 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
 
 4. 결과
 
-   ![image-20200615140952545](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200615140952545.png)
+   ![image-20200615140952545](https://i.ibb.co/S3QZfdK/image-20200615140952545.png)
 
 #### Docker Swamp, HAProxy, Nginx를 활용한 웹서비스 로드밸런싱
 
