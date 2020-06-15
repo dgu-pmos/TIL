@@ -250,6 +250,17 @@ services:
      - 이를 해결하기 위해 도커가 설치된 호스트를 클러스터로 묶어 컨테이너들을 오케스트레이션 할 수 있음
      - 대표적으로 Docker Swarm, Kubernetes
 
+### Docker Swarm
+
+- 다수의 호스트와 컨테이너를 효율적으로 관리하는 방법
+- 여러 도커 호스트를 클러스터로 묶어주는 컨테이너 오케스트레이션 도구
+  - 오케스트레이션은 여러 대의 서버와 여러 개의 서비스를 편리하게 관리해주는 작업
+  - 스케줄링, 클러스터링, 서비스 디스커버리, 로깅, 모니터링 등
+- 노드는 Swarm Cluster에 속한 서버 단위
+- Manager Node는 Cluster 상태를 관리하는 노드
+- Worker Node는 Manager Node의 명령을 받아 컨테이너를 생성하고 상태를 체크
+- Service는 기본적인 배포 단위
+
 ## 실습
 
 ### 도커 실습 환경 구축
@@ -579,6 +590,8 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
          - MYSQL_DATEBASE=xe
          - MYSQL_USER=xe
          - MYSQL_PASSWORD=xe
+       expose:
+         - "3306"
    '''
    docker-compose up -d
    ```
@@ -589,7 +602,139 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
 
 #### Docker Swamp, HAProxy, Nginx를 활용한 웹서비스 로드밸런싱
 
+1. 4대의 Docker 지원 컴퓨터 생성
 
+   ![image-20200615152858582](https://i.ibb.co/GkycwRV/image-20200615152858582.png)
 
+2. Swarm Clustering을 위한 IP 설정 및 Ping 테스트
 
+   | 노드명  | IP            |
+   | ------- | ------------- |
+   | manager | 211.183.3.100 |
+   | worker1 | 211.183.3.101 |
+   | worker2 | 211.183.3.102 |
+   | worker3 | 211.183.3.103 |
 
+   ![image-20200615153735175](https://i.ibb.co/SXLd9ng/image-20200615153735175.png)
+
+3. Manager 노드에서 토큰 발행
+
+   ```
+   docker swarm init --advertise-addr 211.183.3.100
+   ```
+
+   ![image-20200615154653870](https://i.ibb.co/Lkxd9Nc/image-20200615154653870.png)
+
+4. 토큰을 각 Worker 노드에 복사
+
+   ```
+   docker swarm join --token SWMTKN-1-63vebclg251dgvpurj6oyopi224arfvyzpaa5o5thrj0iliu1l-dt7e675trm0a89slvf33nkrmh 211.183.3.100:2377
+   ```
+
+5. Manager 노드에서 클러스터 참여 노드 점검
+
+   ```
+   docker node ls
+   ```
+
+   ![image-20200615154833953](https://i.ibb.co/ZSzmRmQ/image-20200615154833953.png)
+
+6. Nginx를 이용해 클러스터링 테스트
+
+   ```
+   docker service create --replicas 2 -p 8080:80 --name web nginx
+   ```
+
+   ![image-20200615161928608](https://i.ibb.co/3mKW9Mk/image-20200615161928608.png)
+
+7. 테스트 결과
+
+   ```
+   docker service ps web
+   ```
+
+   ![image-20200615161955485](https://i.ibb.co/sFQpVtc/image-20200615161955485.png)
+
+   ![image-20200615162159868](https://i.ibb.co/tHX3HBr/image-20200615162159868.png)
+
+   ![image-20200615162211224](https://i.ibb.co/kDTcWQk/image-20200615162211224.png)
+
+   ![image-20200615162224741](https://i.ibb.co/Mhb09V3/image-20200615162224741.png)
+
+   ![image-20200615162235224](https://i.ibb.co/zx1sGHb/image-20200615162235224.png)
+
+   - 2개의 nginx가 Manager, Worker1에 올라가 있지만 모든 노드로부터 접속 가능
+
+   - 그 이유는 자원을 공유하기 때문에 Nginx가 존재하는 곳으로 자동 redirect
+
+   - 서비스를 5개로 scale out 하는 방법은 다음과 같음
+
+     ```
+     docker service scale web=5
+     ```
+
+     ![image-20200615163113249](https://i.ibb.co/jWnnGDy/image-20200615163113249.png)
+
+8. docker-compose를 이용해 Stack 배포
+
+   ```yaml
+   mkdir swarm ; cd swarm ; vim web.yml
+   '''
+   version: "3"
+   
+   services:
+     nginx:
+       image: nginx
+       deploy:
+         # 서비스 복제 수는 3개
+         replicas: 3
+         # 매니저 노드가 아닌 곳에서만 위치
+         placement:
+           constraints: [node.role != manager]
+         # 재시작 정책 : 실패 시 최대 재시도 수는 3회
+         restart_policy:
+           condition: on-failure
+           max_attempts: 3
+       # HAProxy에 연결(HAProxy는 80번 포트 사용)
+       environment:
+         SERVICE_PORTS: 80
+       # overlay network(web)에 연결
+       networks:
+         - web
+   
+     proxy:
+       image: dockercloud/haproxy
+       depends_on:
+         - nginx
+       volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+       ports:
+         - 8001:80
+       networks:
+         - web
+       deploy:
+         # 각 노드에 한 개씩 배포
+         mode: global
+         # 매니저 노드에만 위치 (이 조건때문에 global임에도 manager에만 위치)
+         placement:
+           constraints: [node.role == manager]
+   
+   networks:
+     # 호스트를 통해서 외부와 통신 가능
+     web:
+       external: true
+   ~                   
+   '''
+   ```
+
+9. 배포 결과
+
+   ```
+   docker stack ps web
+   ```
+
+   ![image-20200615164708834](https://i.ibb.co/RP95YMy/image-20200615164708834.png)
+
+   ![image-20200615170047140](https://i.ibb.co/mqF6qf4/image-20200615170047140.png)
+
+   
