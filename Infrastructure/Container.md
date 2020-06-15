@@ -381,10 +381,10 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
 5. 결과
 
    ![image-20200611183955433](https://i.ibb.co/yXWsTFz/image-20200611183955433.png)
-
-![image-20200611184015966](https://i.ibb.co/Jd1rkgc/image-20200611184015966.png)
-
-![image-20200611184115572](https://i.ibb.co/rdS36TW/image-20200611184115572.png)
+   
+   ![image-20200611184015966](https://i.ibb.co/Jd1rkgc/image-20200611184015966.png)
+   
+   ![image-20200611184115572](https://i.ibb.co/rdS36TW/image-20200611184115572.png)
 
 ### Private Registry 생성 및 사용
 
