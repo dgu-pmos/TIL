@@ -107,6 +107,25 @@
 
 - Docker Container 는 이미지를 실행한 상태
 
+#### 데이터 볼륨
+
+- Docker는 3가지 유형으로 데이터를 관리할 수 있음
+
+  ![](https://docs.crois.net/docker/docker_tmp/D16.png)
+
+  | type          | description                                                  |
+  | ------------- | ------------------------------------------------------------ |
+  | docker volume | docker 컨테이너에 의해 생성되고 관리<br />docker 명령어를 이용해 생성 가능, 경로가 아닌 볼륨 이름 지정 |
+  | bind mount    | 호스트 시스템 내의 디렉토리에 연결<br />절대경로를 이용해서 마운트 설정 |
+  | tmpfs mount   | 메모리에만 지속되며, 중지되면 마운트가 자동 제거             |
+
+### Container Link
+
+- Private IP를 이용해 연결
+- Container IP는 유동적이므로 link 옵션으로 연결하면 /etc/hosts 파일에 Host명과 IP 맵핑
+  - 맵핑된 후에 연결 대상 컨테이너의 IP가 바뀌면 자동 수정
+- 동일 호스트에 존재하는 컨테이너 사이에만 적용 가능
+
 #### 명령문
 
 | command                                                | description                                                  |
@@ -260,6 +279,12 @@ services:
 - Manager Node는 Cluster 상태를 관리하는 노드
 - Worker Node는 Manager Node의 명령을 받아 컨테이너를 생성하고 상태를 체크
 - Service는 기본적인 배포 단위
+
+###### 출처
+
+https://docs.crois.net/docker/docker-volumes/
+
+https://bluese05.tistory.com/54
 
 ## 실습
 
@@ -560,7 +585,7 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
    EXPOSE 80
    CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
    '''
-   docker build -t rapa/xe:1.0
+   docker build -t rapa/xe:1.0 .
    ```
 
 3. xe 서버, db 서버를 구축할 compose file 생성 및 실행
@@ -725,6 +750,7 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
        external: true
    ~                   
    '''
+   docker stack deploy --compose-file=web.yml web
    ```
 
 9. 배포 결과
@@ -738,3 +764,13 @@ docker container run -d --name wordpress -v wordpress:/var/www/html --link mysql
    ![image-20200615170047140](https://i.ibb.co/mqF6qf4/image-20200615170047140.png)
 
    
+
+---
+
+
+
+worker1,worker2의 volume(/var/lib/docker/volumes/db-data/_data) 은 같은 형식의 파일들이 존재하지만 내용은 다르다. 즉, 같은 데이터를 참조하지 않아 데이터 일관성이 없다.
+
+이 문제를 해결하기 위해 persistance storage 사용한다.
+
+도커에서 제공하지 않아 서드파티 플러그인이나 NFS를 이용해 따로 구축한다.
