@@ -23,7 +23,7 @@
 
 #### 어플리케이션 구성
 
-![image-20200617134450981](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617134450981.png)
+![image-20200617134450981](https://i.ibb.co/k3rDtHs/image-20200617134450981.png)
 
 - Pod
 
@@ -64,7 +64,7 @@
 
   - NodePort
 
-    ![image-20200617154933419](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617154933419.png)
+    ![image-20200617154933419](https://i.ibb.co/Wz84KFN/image-20200617154933419.png)
 
     - 클러스터 외부에서도 클러스터에 접속 가능하도록 함
     - 모든 노드의 특정 포트를 개방해 서비스에 접근
@@ -76,7 +76,7 @@
 
   - Load Balancer
 
-    ![image-20200617155108342](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617155108342.png)
+    ![image-20200617155108342](https://i.ibb.co/jJ7N5zs/image-20200617155108342.png)
 
     - pod과 연결해서 사용
     - 클라우드 플랫폼으로부터 도메인 이름과 IP를 할당받아 쉽게 pod에 접근
@@ -96,7 +96,7 @@
 
 ### 쿠버네티스 구조
 
-![image-20200617104233952](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617104233952.png)
+![image-20200617104233952](https://i.ibb.co/sRwKtjZ/image-20200617104233952.png)
 
 - API Server
   - 쿠버네티스의 리소스 정보를 관리하기 위한 프론트엔드 REST API
@@ -147,7 +147,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 1. Google Container Registry API 등록
 
-   ![](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616155808893.png)
+   ![](https://i.ibb.co/HtJY3DZ/image-20200616155808893.png)
 
 2. 로컬 호스트에 패키지 소스로 Cloud SDK 배포 URL 추가
 
@@ -191,11 +191,11 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    gcloud docker -- push asia.gcr.io/rapa-phm/gcp-test
    ```
 
-   ![image-20200616165651900](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616165651900.png)
+   ![image-20200616165651900](https://i.ibb.co/Drsp5Dh/image-20200616165651900.png)
 
 9. 결과
 
-   ![image-20200616170256300](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616170256300.png)
+   ![image-20200616170256300](https://i.ibb.co/0F1qgWz/image-20200616170256300.png)
 
 10. 로컬 저장소에 이미지 삭제 후 pull
 
@@ -207,7 +207,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 11. 결과
 
-    ![image-20200616170632486](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616170632486.png)
+    ![image-20200616170632486](https://i.ibb.co/cL4wxpn/image-20200616170632486.png)
 
     
 
@@ -215,17 +215,17 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 1. 클러스터 생성
 
-   ![image-20200616174107689](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616174107689.png)
+   ![image-20200616174107689](https://i.ibb.co/rb0V2Cr/image-20200616174107689.png)
 
 2. 결과
 
-   ![image-20200616174457953](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616174457953.png)
+   ![image-20200616174457953](https://i.ibb.co/RH9vYDc/image-20200616174457953.png)
 
 3. 로컬 호스트와 클러스터 연결
 
-   ![image-20200616174514814](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616174514814.png)
+   ![image-20200616174514814](https://i.ibb.co/LNKjP8C/image-20200616174514814.png)
 
-   ![image-20200616174609496](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200616174609496.png)
+   ![image-20200616174609496](https://i.ibb.co/gFCX2Yn/image-20200616174609496.png)
 
 4. kubectl 설치 및 클러스터 상태 확인
 
@@ -234,7 +234,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    kubectl get nodes
    ```
 
-   ![image-20200617092121157](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617092121157.png)
+   ![image-20200617092121157](https://i.ibb.co/D1jmtGF/image-20200617092121157.png)
 
 ### replicaset을 이용한 서비스 구축 및 replica 수 변경 적용 실습
 
@@ -278,7 +278,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 2. 결과
 
-   ![image-20200617115922031](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617115922031.png)
+   ![image-20200617115922031](https://i.ibb.co/7RFP4NH/image-20200617115922031.png)
 
 3. 다른 yaml으로 replica 설정 변경
 
@@ -315,7 +315,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 4. 결과
 
-   ![image-20200617115953998](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617115953998.png)
+   ![image-20200617115953998](https://i.ibb.co/xYgKG7w/image-20200617115953998.png)
 
    같은 label을 selector로 지정했으므로 pod이 1개만 추가됨.
 
@@ -359,9 +359,9 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    kubectl rollout history deployment my-nginx-deployment
    ```
 
-   ![image-20200617141235171](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617141235171.png)
+   ![image-20200617141235171](https://i.ibb.co/zNNSrPS/image-20200617141229755.png)
 
-   ![image-20200617141214863](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617141214863.png)
+   ![image-20200617141214863](https://i.ibb.co/hF1920R/image-20200617141214863.png)
 
 2. record
 
@@ -379,9 +379,9 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 3. 결과
 
-   ![image-20200617141452209](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617141452209.png)
+   ![image-20200617141452209](https://i.ibb.co/8jF6Yq1/image-20200617141452209.png)
 
-   ![image-20200617141440252](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617141440252.png)
+   ![image-20200617141440252](https://i.ibb.co/n6hyVC8/image-20200617141440252.png)
 
 4. rollback
 
@@ -396,7 +396,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 5. 결과
 
-   ![image-20200617141745359](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617141745359.png)
+   ![image-20200617141745359](https://i.ibb.co/jgx5HBz/image-20200617141745359.png)
 
 ### GCP를 활용해 서비스 배포
 
@@ -420,7 +420,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    gcloud builds submit --config config/cloudbuild.yaml
    ```
 
-   ![image-20200617093434834](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617093434834.png)
+   ![image-20200617093434834](https://i.ibb.co/sHMH9KH/image-20200617093434834.png)
 
 2. 기타 설정 적용(프로젝트 이름, 암호화)
 
@@ -451,7 +451,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    kubectl create -f config/secrets.yaml
    ```
 
-   ![image-20200617153206266](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617153206266.png)
+   ![image-20200617153206266](https://i.ibb.co/bBwM71f/image-20200617153206266.png)
 
 3.  Deployment 적용
 
@@ -500,7 +500,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    kubectl apply -f config/deployment-green.yaml
    ```
 
-   ![image-20200617153154327](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617153154327.png)
+   ![image-20200617153154327](https://i.ibb.co/0rcFTS9/image-20200617153154327.png)
 
 4. 로드밸런서 서비스 설정
 
@@ -524,8 +524,8 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
    '''
    ```
 
-   ![image-20200617153803046](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617153803046.png)
+   ![image-20200617153803046](https://i.ibb.co/tq7z0KK/image-20200617153803046.png)
 
 5. 결과
 
-   ![image-20200617153753143](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200617153753143.png)
+   ![image-20200617153753143](https://i.ibb.co/RCMD2DS/image-20200617153753143.png)
