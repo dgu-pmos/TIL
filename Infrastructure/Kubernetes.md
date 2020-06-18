@@ -1,4 +1,4 @@
-# Kubenetes
+# Kubernetes
 
 ## 이론
 
