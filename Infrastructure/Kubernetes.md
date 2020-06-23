@@ -109,10 +109,6 @@
   - 주기적으로 실행하는 오브젝트
   - 리눅스에서 쓰이는 cron과 동일
 
-- StatefulSets
-
-  - 상태를 갖는 파드를 관리하기 위한 오브젝트
-  - 
 
 #### Service
 
@@ -143,7 +139,7 @@
 
 - Ingress
 
-  <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200618152558760.png" alt="image-20200618152558760" style="zoom:67%;" />
+  <img src="https://i.ibb.co/0tQJqmS/image-20200618152558760.png" alt="image-20200618152558760" style="zoom:67%;" />
 
   - 외부에서 서버로 유입되는 트래픽을 처리하기 위한 네트워크
   - 외부 요청을 어떻게 처리할 것인지를 정의하는 오브젝트
@@ -185,7 +181,7 @@
 
 ##### PV 과정
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200619112250615.png" alt="image-20200619112250615" style="zoom:67%;" />
+<img src="https://i.ibb.co/Kjk14bB/image-20200619112250615.png" alt="image-20200619112250615" style="zoom:67%;" />
 
 1. 인프라 관리자는 네트워크 볼륨의 정보를 이용해 PV 리소스를 미리 생성(정보 안에는 마운트하기 위한 엔드포인트 포함)
 2. 사용자는 파드를 정의하는 yaml 파일에 '이 파드는 영속적으로 데이터를 저장하기 위한 볼륨과 마운트 해야한다.' 라는 의미의 PVC를 명시하고, 해당 PVC 생성
@@ -203,7 +199,7 @@
 
 ##### Role 예시
 
-![image-20200619142107251](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200619142107251.png)
+![image-20200619142107251](https://i.ibb.co/NsdPyxb/image-20200619142107251.png)
 
 서비스 조회할 수 있는 권한 없음
 
@@ -242,7 +238,7 @@ kubectl apply -f rolebindinf-service-reader.yaml
 
 권한 부여 후, 명령어 동작되는 것을 확인
 
-![image-20200619143149113](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200619143149113.png)
+![image-20200619143149113](https://i.ibb.co/ZJTpFyw/image-20200619143149113.png)
 
 ##### Cluster Role 예시
 
@@ -279,13 +275,7 @@ roleRef:
 kubectl apply -f rolebinding-pv-read.yaml
 ```
 
-![image-20200619153801798](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200619153801798.png)
-
-#### StatefulSet
-
-- 서비스 이름을 통해 특정 파드로 접근 가능
-
-  <사진>
+![image-20200619153801798](https://i.ibb.co/0tTWfqj/image-20200619153801798.png)
 
 ### 쿠버네티스 구조
 
@@ -713,7 +703,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 ### Ingress를 이용한 서비스 배포
 
-![image-20200619111303334](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200619111303334.png)
+![image-20200619111303334](https://i.ibb.co/g4dfwnh/image-20200619111303334.png)
 
 1. 인그레스 컨트롤러 서버 생성
 
@@ -856,7 +846,7 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 7. 결과
 
-   ![image-20200618173917251](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200618173917251.png)
+   ![image-20200618173917251](https://i.ibb.co/BcHdKG2/image-20200618173917251.png)
 
 ---
 
@@ -864,73 +854,222 @@ https://blog.leocat.kr/notes/2019/08/22/translation-kubernetes-nodeport-vs-loadb
 
 ### Kubernetes를 이용해 Wordpress, Mysql 구축
 
+1. Wordpress, MYSQL을 위한 Persistent Volume 생성
 
+   ```yaml
+   vim pv1.yaml
+   '''
+   kind: PersistentVolume
+   apiVersion: v1
+   metadata:
+     name: pv0001
+     labels:
+       type: local
+   spec:
+     capacity:
+       storage: 25Gi
+     accessModes:
+       - ReadWriteOnce
+     hostPath:
+       path: "/data001/pv0001"
+   '''
+   kubectl create -f pv1.yaml
+   vim pv2.yaml
+   '''
+   kind: PersistentVolume
+   apiVersion: v1
+   metadata:
+     name: pv0002
+     labels:
+       type: local
+   spec:
+     capacity:
+       storage: 25Gi
+     accessModes:
+       - ReadWriteOnce
+     hostPath:
+       path: "/data001/pv0002"
+   '''
+   kubectl create -f pv2.yaml
+   ```
 
-1. ubuntu_for_testing 폴더를 d:\vm에 옮기기
-2. file->open 한 뒤 vmdk 파일 불러오기 
+2. 연결을 위한 Persistent Volume Claim 생성
 
+   ```yaml
+   vim wordpress-volumeclaim.yaml
+   '''
+   kind: PersistentVolumeClaim
+   apiVersion: v1
+   metadata:
+     name: wordpress-volumeclaim
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 10Gi
+   '''
+   kubectl create -f wordpress-volumeclaim.yaml
+   vim mysql-volumeclaim.yaml
+   '''
+   kind: PersistentVolumeClaim
+   apiVersion: v1
+   metadata:
+     name: mysql-volumeclaim
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 10Gi
+   '''
+   kubectl create -f mysql-volumeclaim.yaml
+   ```
 
+3. MYSQL을 위한 Service 생성(ClusterIP)
 
+   ```yaml
+   vim mysql-service.yaml
+   '''
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: mysql
+     labels:
+       app: mysql
+   spec:
+     type: ClusterIP
+     ports:
+       - port: 3306
+     selector:
+       app: mysql
+   '''
+   kubectl create -f mysql-service.yaml
+   ```
 
+4. Wordpress를 위한 Service 생성(LoadBalancer)
 
-```
-vim pv1.yaml
-'''
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: pv0001
-  labels:
-    type: local
-spec:
-  capacity:
-  storage: 25Gi
-accessModes:
-  - ReadWriteOnce
-hostPath:
-  path: "/data001/pv0001"
-'''
-vim pv2.yaml
-'''
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: pv0002
-  labels:
-    type: local
-spec:
-  capacity:
-  storage: 25Gi
-accessModes:
-  - ReadWriteOnce
-hostPath:
-  path: "/data001/pv0002"
-'''
-vim wordpress-volumeclaim.yaml
-'''
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: wordpress-volumeclaim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-'''
-vim mysql-volumeclaim.yaml
-'''
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: wordpress-volumeclaim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-'''
-```
+   ```yaml
+   vim wordpress-service.yaml
+   '''
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: my-lb-service
+     labels:
+       app: wordpress
+       name: wordpress
+   spec:
+     type: LoadBalancer
+     ports:
+       - protocol: TCP
+         port: 80
+         targetPort: 80
+     selector:
+       app: wordpress
+   '''
+   kubectl create -f wordpress-service.yaml
+   ```
 
+5. MYSQL 생성(Deployment)
+
+   ```yaml
+   vim mysql.yaml
+   '''
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: mysql
+     labels:
+       app: mysql
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: mysql
+     template:
+       metadata:
+         labels:
+           app: mysql
+       spec:
+         containers:
+           - image: mysql:5.6
+             name: mysql
+             env:
+               - name: MYSQL_ROOT_PASSWORD
+                 valueFrom:
+                   secretKeyRef:
+                     name: mysql-password
+                     key: password
+               - name: MYSQL_DATABASE # 구성할 database 명
+                 value: k8sdb
+               - name: MYSQL_USER # database 에 권한이 있는 user
+                 value: k8suser
+               - name: MYSQL_ROOT_HOST # 접근 호스트
+                 value: '%'
+               - name: MYSQL_PASSWORD # database 에 권한이 있는 user 의 패스워드
+                 value: P@ssw0rd!!
+             ports:
+               - containerPort: 3306
+                 name: mysql
+             volumeMounts:
+               - name: mysql-persistent-storage
+                 mountPath: /var/lib/mysql
+         volumes:
+           - name: mysql-persistent-storage
+             persistentVolumeClaim:
+               claimName: mysql-volumeclaim
+   '''
+   kubectl create -f mysql.yaml
+   ```
+
+6. Wordpress 생성(Deployment)
+
+   ```yaml
+   vim wordpress.yaml
+   '''
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: wordpress
+     labels:
+       app: wordpress
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: wordpress
+     template:
+       metadata:
+         labels:
+           app: wordpress
+       spec:
+         containers:
+           - image: wordpress
+             name: wordpress
+             env:
+               - name: WORDPRESS_DB_HOST
+                 value: mysql:3306
+               - name: WORDPRESS_DB_NAME
+                 value: k8sdb
+               - name: WORDPRESS_DB_USER
+                 value: k8suser
+               - name: WORDPRESS_DB_PASSWORD
+                 value: P@ssw0rd!!
+             ports:
+               - containerPort: 80
+                 name: wordpress
+             volumeMounts:
+               - name: wordpress-persistent-storage
+                 mountPath: /var/www/html
+         volumes:
+           - name: wordpress-persistent-storage
+             persistentVolumeClaim:
+               claimName: wordpress-volumeclaim
+   '''
+   kubectl create -f wordpress.yaml
+   ```
+
+7. 결과
+
+   ![image-20200623175721763](https://i.ibb.co/Jxy5dBR/image-20200623175721763.png)
