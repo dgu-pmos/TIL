@@ -202,8 +202,20 @@
 #### 정규표현식
 
 - 텍스트를 걸러내는 데 사용하는 정의 패턴 템플릿
-- 와일드카드 문자 사용
-- ??
+
+- 표{}
+
+  | 기호     | 설명                                     |
+  | -------- | ---------------------------------------- |
+  | ^        | 행의 시작                                |
+  | $        | 행의 끝                                  |
+  | *        | 해당 문자가 없거나 있거나 상관없음       |
+  | ?        | 해당 문자가 없거나 한번 나타나는 것      |
+  | +        | 최소 한 개는 있어야 함                   |
+  | [문자들] | 문자들에 포함되는 하나의 문자와 부합     |
+  | {m,n}    | 최소 m번, 최대 n번 나타남                |
+  | ()       | 괄호 안에 있는 것들은 하나의 문자로 취급 |
+  | \|       | 논리 OR 식                               |
 
 ### 매개변수
 
@@ -245,7 +257,7 @@
 - /usr/bin
   - /bin에 있는 명령을 제외한 명령어 위치
 - /usr/sbin
-  - /sbin에 있는 명령을 제외한 명령어 위치
+  - /sbicat n에 있는 명령을 제외한 명령어 위치
 
 #### bashrc
 
@@ -334,3 +346,99 @@
 3. 결과
 
    ![image-20200623170416751](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200623170416751.png)
+
+
+
+
+
+---
+
+
+
+### 간단한 텍스트 메뉴 만들기
+
+```bash
+vim menu1
+'''
+#!/bin/bash
+# simple script menu
+
+function diskspace {
+	clear
+	df -k
+}
+
+function whoseon {
+	clear
+	who
+}
+
+function memusage {
+	clear
+	cat /proc/meminfo
+}
+
+function menu {
+	clear
+	echo
+	echo -e "\t\t\tSys Admin Menu\n"
+	echo -e "\t1. Display disk space"
+	echo -e "\t2. Display logged on users"
+	echo -e "\t3. Display memory usage"
+	echo -e "\t\tEnter options: "
+	read -n 1 option
+}
+
+while [ 1 ]
+do 
+	menu
+	case $option in
+	0)
+		break ;;
+	1)
+		diskspace ;;
+	2)
+		whoseon ;;
+	3)
+		memusage ;;
+	*)
+		clear
+		echo "Sorry, wrong selection" ;;
+	esac
+	echo -en "\n\n\t\t\tHit any key to continue"
+	read -n 1 line
+done
+clear
+'''
+```
+
+결과
+
+![image-20200624161018276](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200624161018276.png)
+
+![image-20200624161031925](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200624161031925.png)
+
+
+
+### 간단한 GUI 메뉴 만들기
+
+1. dialog 패키지 설치
+
+   ```
+   yum -y install dialog
+   ```
+
+   - dialog 지원 위젯 표
+
+     | 위젯      | 설명                                     | 위젯         | 설명                                      |
+     | --------- | ---------------------------------------- | ------------ | ----------------------------------------- |
+     | calendar  | 날짜 선택하는 달력 제공                  | passwordbox  | 입력받은 텍스트를 숨기는 단일 텍스트 상자 |
+     | checklist | 각 항목을 켜거나 끌 수 있는 여러 항목    | passwordform | 숨겨진 텍스트 필드로 구성된 양식          |
+     | form      | 입력을 위한 텍스트 필드로 구성된 양식    | menu         | 선택 목록                                 |
+     | gauge     | 진행 비율을 나타냄                       | yesno        | Yes, No 버튼이 있는 간단한 메세지 제공    |
+     | infobox   | 응답을 기다리지 않고 메세지              | timebox      | 시,분,초 선택 창                          |
+     | inputbox  | 텍스트 입력을 위한 단일 텍스트 양식 상자 | msgbox       | 메세지 표시하고 OK 버튼 표시              |
+     | inputmenu | 편집 메뉴                                | radiolist    | 하나의 아이템만 선택                      |
+
+2. 
+
