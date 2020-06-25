@@ -312,7 +312,7 @@
 
 3. 결과
 
-   ![image-20200623165737899](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200623165737899.png)
+   ![image-20200623165737899](https://i.ibb.co/pXMwn0H/image-20200623165737899.png)
 
 ### text 파일에 존재하는 이메일을 이용해 root 계정 판독
 
@@ -345,15 +345,7 @@
 
 3. 결과
 
-   ![image-20200623170416751](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200623170416751.png)
-
-
-
-
-
----
-
-
+   ![image-20200623170416751](https://i.ibb.co/vwt31YR/image-20200623170416751.png)
 
 ### 간단한 텍스트 메뉴 만들기
 
@@ -414,9 +406,9 @@ clear
 
 결과
 
-![image-20200624161018276](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200624161018276.png)
+![image-20200624161018276](https://i.ibb.co/Lh4CpJD/image-20200624161018276.png)
 
-![image-20200624161031925](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200624161031925.png)
+![image-20200624161031925](https://i.ibb.co/q0LL6hd/image-20200624161031925.png)
 
 
 
@@ -439,6 +431,4 @@ clear
      | infobox   | 응답을 기다리지 않고 메세지              | timebox      | 시,분,초 선택 창                          |
      | inputbox  | 텍스트 입력을 위한 단일 텍스트 양식 상자 | msgbox       | 메세지 표시하고 OK 버튼 표시              |
      | inputmenu | 편집 메뉴                                | radiolist    | 하나의 아이템만 선택                      |
-
-2. 
 

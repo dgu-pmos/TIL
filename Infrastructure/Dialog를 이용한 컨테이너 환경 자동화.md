@@ -241,8 +241,8 @@ rm -f *.txt
 
 ## 결과
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200625161422911.png" alt="image-20200625161422911" style="zoom:67%;" />
+<img src="https://i.ibb.co/fDtc9LR/image-20200625161422911.png" alt="image-20200625161422911" style="zoom:67%;" />
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200625161437464.png" alt="image-20200625161437464" style="zoom:67%;" />
+<img src="https://i.ibb.co/TqDQygx/image-20200625161437464.png" alt="image-20200625161437464" style="zoom:67%;" />
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200625161511245.png" alt="image-20200625161511245" style="zoom:80%;" />
+<img src="https://i.ibb.co/kDZqQy2/image-20200625161511245.png" alt="image-20200625161511245" style="zoom:80%;" />
