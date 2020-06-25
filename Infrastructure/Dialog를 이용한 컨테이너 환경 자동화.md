@@ -232,8 +232,6 @@ esac
 
 done
 
-rm -f $temp1 2 > /dev/null
-rm -f $temp2 2 > /dev/null
 rm -f $temp3 2 > /dev/null
 cp -f *.txt ..
 rm -f *.txt
