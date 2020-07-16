@@ -10,8 +10,7 @@
 - Full Hypervisor, Type 1 Hypervisor
 - 리눅스 커널의 Mainline에 포함된 정식 커널 모듈 중 하나
 - CPU에 VT 기능 지원 해야 사용 가능
-- 리눅스를 Hypervisor로 변환해 독립된 가상 머신 여러 개 실행
-- QEMU와 함께라면 KVM은 가속 에이전트
+- QEMU와 함께 사용하면 Hypervisor는 KVM, 하드웨어 가상화는 QEMU
 
 #### QEMU
 
@@ -20,18 +19,12 @@
   - 가상머신의 하드웨어 가상화 및 저수준 인터페이스 지원
   - QEMU는 자체 가상 머신
   - 가상머신 종료 및 Processor 소비량 검사 등 수행
-- KVM과 QEMU는 둘 다 Hypervisor 처럼 동작할 수 있음
-  - 그러면 왜 함께 사용하는가?
-    - QEMU는 가상화가 없는 시스템에서는 느림
-    - 그래서 KVM은 QEMU에게 서로 다른 아키텍처의 하드웨어 가상화 기능에 접근을 허용
-    - KVM과 함께라면 QEMU가 하이퍼바이저/에뮬레이터
-- Guest CPU를 Host CPU용 명령으로 실행 중에 동적으로 변환
 
 #### Libvirt
 
 ![](https://www.redhat.com/cms/managed-files/image1_21_0.png)
 
-- 단순한 가상화 관리 라이브러리
+- 가상화 관리 라이브러리
   - KVM과 QEMU를 관리하는 API 라이브러리
   - API 라이브러리, 데몬, virsh(Command Line Tool) 제공
 - QEMU가 가상머신 제어를 위해 Libvirt에게 요청하는 방식
@@ -43,8 +36,6 @@
 
 - 가상화된 Hardware를 각각의 VM에 노출
 - 이 과정에서 KVM모듈과 Qemu 프로세스가 인터페이싱
-
-
 
 #### /etc/libvirt/qemu
 
