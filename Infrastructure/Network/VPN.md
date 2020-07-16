@@ -31,7 +31,7 @@
 
 1. 기본 IP 설정 및 물리적 연결
 
-   ![image-20200629083222675](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200629083222675.png)
+   ![image-20200629083222675](https://i.ibb.co/kJWSZJn/image-20200629083222675.png)
 
    ```
    MYDC
@@ -143,8 +143,8 @@
 
 4. 결과
 
-   ![image-20200626160750320](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200626160750320.png)
+   ![image-20200626160750320](https://i.ibb.co/VV1Cgyd/image-20200626160750320.png)
 
-   ![image-20200626160916562](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200626160916562.png)
+   ![image-20200626160916562](https://i.ibb.co/SnF8dDF/image-20200626160916562.png)
 
-   ![image-20200626160925880](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200626160925880.png)
+   ![image-20200626160925880](https://i.ibb.co/4SQTTH0/image-20200626160925880.png)

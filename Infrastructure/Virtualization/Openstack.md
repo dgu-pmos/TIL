@@ -4,7 +4,7 @@
 
 ### 주요 컴포넌트
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709141641495.png" alt="image-20200709141641495" style="zoom: 50%;" />
+<img src="https://i.ibb.co/xSWhhJY/image-20200709141641495.png" style="zoom:70%;" />
 
 #### Nova
 
@@ -56,7 +56,7 @@
 
 ### multiple node configuration
 
-![image-20200709154534352](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709154534352.png)
+![image-20200709154534352](https://i.ibb.co/vQpCyPZ/image-20200709154534352.png)
 
 #### controller node
 
@@ -77,14 +77,14 @@
 
 #### nova-network
 
-  <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709152401352.png" alt="image-20200709152401352" style="zoom:50%;" />
+  <img src="https://i.ibb.co/NFH7t0x/image-20200709152401352.png" alt="image-20200709152401352" style="zoom:70%;" />
 
   - nova-network는 nova 프로젝트 내에서 네트워크를 담당하는 프로세스
   - openstack 초기에는 nova 프로젝트에서 직접 인스턴스와 관련된 네트워크 관리
 
 ##### flat network
 
-  <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709152605335.png" alt="image-20200709152605335" style="zoom:50%;" />
+  <img src="https://i.ibb.co/xYVzJHC/image-20200709152605335.png" alt="image-20200709152605335" style="zoom:70%;" />
 
   - 가장 기본적인 네트워크 구성모델
   - IP pool에서 fixed IP를 할당받음
@@ -94,14 +94,14 @@
 
 ##### vlan network
 
-  <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709153119146.png" alt="image-20200709153119146" style="zoom:50%;" />
+  <img src="https://i.ibb.co/6FW6B4T/image-20200709153119146.png" alt="image-20200709153119146" style="zoom:70%;" />
 
   - 하나의 물리적 NIC에 여러 개의 그룹별로 단독 VLAN 망을 구성
   - 각 VLAN은 dnsmasq와 하나의 bridge를 구성
 
 #### Neutron
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709153400118.png" alt="image-20200709153400118" style="zoom:50%;" />
+<img src="https://i.ibb.co/WnhDrvg/image-20200709153400118.png" alt="image-20200709153400118" style="zoom:70%;" />
 
 - 네트워크의 생성/변경/삭제에 대한 API만 제공할 뿐 실제로는 plugin을 통해서 네트워크 구성
 - IP 할당 동작 원리
@@ -126,7 +126,7 @@
 
 ###### 기본값으로 메커니즘 드라이버는 openvswitch 사용
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709164245329.png" alt="image-20200709164245329" style="zoom: 67%;" />
+<img src="https://i.ibb.co/XtH5QWb/image-20200709164245329.png" alt="image-20200709164245329" style="zoom: 80%;" />
 
 #### Fixed IP, Floating IP
 
@@ -145,7 +145,7 @@
 
 #### 가상머신 사양
 
-![image-20200709105726316](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709105726316.png)
+![image-20200709105726316](https://i.ibb.co/D7FCvcJ/image-20200709105726316.png)
 
 #### 기본 보안 및 네트워크 설정
 
@@ -219,53 +219,53 @@ packstack --answer-file=answer.txt
 
 #### flavor 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709095012491.png" alt="image-20200709095012491" style="zoom:50%;" />
+<img src="https://i.ibb.co/NNynpjf/image-20200709095012491.png" alt="image-20200709095012491" style="zoom:70%;" />
 
 #### 네트워크 생성
 
 ##### 네트워크 및 서브넷 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102120064.png" alt="image-20200709102120064" style="zoom:50%;" />
+<img src="https://i.ibb.co/F6tDdLJ/image-20200709102120064.png" alt="image-20200709102120064" style="zoom:70%;" />
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102131042.png" alt="image-20200709102131042" style="zoom:50%;" />
+<img src="https://i.ibb.co/JkshkpD/image-20200709102131042.png" alt="image-20200709102131042" style="zoom:70%;" />
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102159101.png" alt="image-20200709102159101" style="zoom:50%;" />
+<img src="https://i.ibb.co/H2hS4qL/image-20200709102159101.png" alt="image-20200709102159101" style="zoom:70%;" />
 
 ##### 라우터 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102306658.png" alt="image-20200709102306658" style="zoom:50%;" />
+<img src="https://i.ibb.co/MC0KWCN/image-20200709102306658.png" alt="image-20200709102306658" style="zoom:70%;" />
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102348369.png" alt="image-20200709102348369" style="zoom:50%;" />
+<img src="https://i.ibb.co/hsyJDGr/image-20200709102348369.png" alt="image-20200709102348369" style="zoom:70%;" />
 
 ##### 결과
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102405746.png" alt="image-20200709102405746" style="zoom:50%;" />
+<img src="https://i.ibb.co/ygVvgD3/image-20200709102405746.png" alt="image-20200709102405746" style="zoom:70%;" />
 
 #### 이미지 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709102706471.png" alt="image-20200709102706471" style="zoom:50%;" />
+<img src="https://i.ibb.co/r4GNSZQ/image-20200709102706471.png" alt="image-20200709102706471" style="zoom:70%;" />
 
 
 
 #### 프로젝트 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709103640508.png" alt="image-20200709103640508" style="zoom:50%;" />
+<img src="https://i.ibb.co/kJR0WRB/image-20200709103640508.png" alt="image-20200709103640508" style="zoom:70%;" />
 
 ##### 할당량 편집
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709103451455.png" alt="image-20200709103451455" style="zoom:50%;" />
+<img src="https://i.ibb.co/VM8xwJm/image-20200709103451455.png" alt="image-20200709103451455" style="zoom:70%;" />
 
 ##### 사용자 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709103611255.png" alt="image-20200709103611255" style="zoom:50%;" />
+<img src="https://i.ibb.co/g7jT8ft/image-20200709103611255.png" alt="image-20200709103611255" style="zoom:70%;" />
 
 #### 인스턴스 생성
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709105537054.png" alt="image-20200709105537054" style="zoom:50%;" />
+<img src="https://i.ibb.co/DQrJ2nz/image-20200709105537054.png" alt="image-20200709105537054" style="zoom:70%;" />
 
 ##### 결과
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709105642490.png" alt="image-20200709105642490" style="zoom:50%;" />
+<img src="https://i.ibb.co/DDRFgMs/image-20200709105642490.png" alt="image-20200709105642490" style="zoom:70%;" />
 
 #### floating IP 지정
 
@@ -275,7 +275,7 @@ openstack server add floating ip centos_www_test1 211.183.3.X
 openstack server list
 ```
 
-![image-20200709165835422](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709165835422.png)
+![image-20200709165835422](https://i.ibb.co/ngSwQTh/image-20200709165835422.png)
 
 ### 로드밸런서 구성
 
@@ -294,7 +294,7 @@ openstack server list
    openstack image list
    ```
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115024206.png" alt="image-20200709115024206" style="zoom:80%;" />
+   <img src="https://i.ibb.co/M8rkd0p/image-20200709115024206.png" alt="image-20200709115024206" style="zoom:80%;" />
 
 3. 네트워크, 서브넷, 라우터 생성
 
@@ -305,25 +305,25 @@ openstack server list
    openstack router add subnet DEMO_R1 demo_private01_subnet
    ```
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115124510.png" alt="image-20200709115124510" style="zoom: 67%;" />
+   <img src="https://i.ibb.co/W0DB0X2/image-20200709115124510.png" alt="image-20200709115124510" style="zoom: 80%;" />
 
 4. 보안 그룹 생성
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115216945.png" alt="image-20200709115216945" style="zoom:67%;" />
+   <img src="https://i.ibb.co/cvwnkR9/image-20200709115216945.png" alt="image-20200709115216945" style="zoom:80%;" />
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115249506.png" alt="image-20200709115249506" style="zoom:67%;" />
+   <img src="https://i.ibb.co/V26SfNb/image-20200709115249506.png" alt="image-20200709115249506" style="zoom:80%;" />
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115323528.png" alt="image-20200709115323528" style="zoom:67%;" />
+   <img src="https://i.ibb.co/cQgCkC0/image-20200709115323528.png" alt="image-20200709115323528" style="zoom:80%;" />
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115344657.png" alt="image-20200709115344657" style="zoom:67%;" />
+   <img src="https://i.ibb.co/FwtXpq1/image-20200709115344657.png" alt="image-20200709115344657" style="zoom:80%;" />
 
 5. 키 페어 생성
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115418597.png" alt="image-20200709115418597" style="zoom:67%;" />
+   <img src="https://i.ibb.co/X2tdxCw/image-20200709115418597.png" alt="image-20200709115418597" style="zoom:80%;" />
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115428933.png" alt="image-20200709115428933" style="zoom: 80%;" />
+   <img src="https://i.ibb.co/Gt11PMg/image-20200709115428933.png" alt="image-20200709115428933" style="zoom: 80%;" />
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115731476.png" alt="image-20200709115731476" style="zoom:50%;" />
+   <img src="https://i.ibb.co/RcVzKbw/image-20200709115731476.png" alt="image-20200709115731476" style="zoom:70%;" />
 
 6. 인스턴스 생성
 
@@ -331,7 +331,7 @@ openstack server list
    openstack server create --flavor m1.xsmall --image CentOS7 --security-group www_SSH_PERMIT --key-name demoweb --nic net-id=08e862e5-b9bd-46f9-b400-2b6a12d1250a centos_www1
    ```
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709115948409.png" alt="image-20200709115948409" style="zoom:67%;" />
+   <img src="https://i.ibb.co/C54SknR/image-20200709115948409.png" alt="image-20200709115948409" style="zoom:80%;" />
 
 7. open v switch로 NAT 연결
 
@@ -371,9 +371,9 @@ openstack server list
    ovs-vsctl show
    ```
 
-   <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709122459953.png" alt="image-20200709122459953" style="zoom:67%;" />
+   <img src="https://i.ibb.co/tLwVWf7/image-20200709122459953.png" alt="image-20200709122459953" style="zoom:80%;" />
 
-   ![image-20200709122436805](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709122436805.png)
+   ![image-20200709122436805](https://i.ibb.co/5TyM2NG/image-20200709122436805.png)
    
 8. openvswitch br-ex와 openstack의 라우터 연결
 
@@ -394,17 +394,17 @@ openstack server list
 
 10. 로드밸런서 추가
 
-    ![image-20200709182146505](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709182146505.png)
+    ![image-20200709182146505](https://i.ibb.co/MfHGHm5/image-20200709182146505.png)
 
-    ![image-20200709182152124](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709182152124.png)
+    ![image-20200709182152124](https://i.ibb.co/17RV47D/image-20200709182152124.png)
 
-    ![image-20200709182356594](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709182356594.png)
+    ![image-20200709182356594](https://i.ibb.co/99yqrzt/image-20200709182356594.png)
 
-    ![image-20200709182601609](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709182601609.png)
+    ![image-20200709182601609](https://i.ibb.co/WHz66cH/image-20200709182601609.png)
 
 11. 네트워크 토폴로지 확인
 
-    <img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20200709181954766.png" alt="image-20200709181954766" style="zoom:67%;" />
+    <img src="https://i.ibb.co/8gCY70B/image-20200709181954766.png" alt="image-20200709181954766" style="zoom:80%;" />
 
 ### heat 실습
 
