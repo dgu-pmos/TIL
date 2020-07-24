@@ -268,17 +268,17 @@ add connection 에서 hostname을 이용해 KVM 끼리 연결한다.
    # virsh를 이용해 kvm1에 virbr1 적용
    virsh net-define /storage/private1.xml
    # 네트워크 시작
-   vrish net-start private1
+   virsh net-start private1
    # 자동 시작 설정
-   vrish net-autostart private1
+   virsh net-autostart private1
    # 가상머신 fw1에 private1 네트워크 인터페이스 부착
    virsh attach-interface --domain fw1 --source private1 --type network --model virtio --config --live
    
    [kvm2]
    # kvm2에도 추가
    virsh net-define /storage/private1.xml
-   vrish net-start private1
-   vrish net-autostart private1
+   virsh net-start private1
+   virsh net-autostart private1
    
    [fw1]
    # eth1의 IP dhcp 할당
